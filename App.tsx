@@ -19,7 +19,7 @@ const App: React.FC = () => {
   const [showSettings, setShowSettings] = useState(false);
   const [tempKey, setTempKey] = useState("");
 
-  // Background Image State
+  // Background Image State - 靜態背景，預設開啟
   const [showBackground, setShowBackground] = useState(true);
 
   useEffect(() => {
@@ -82,16 +82,13 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen font-sans relative p-4 sm:p-6 lg:p-8">
-      {/* Background Blobs */}
+      {/* Background Blobs - 靜態版本，停止動畫以提升效能 */}
       {showBackground && (
-        <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
-          <div className="absolute -top-20 -left-20 w-80 h-80 bg-gradient-to-br from-orange-300 to-orange-400 rounded-full blur-3xl opacity-60 animate-blob"></div>
-          <div className="absolute top-1/4 -right-20 w-96 h-96 bg-gradient-to-br from-orange-400 to-orange-500 rounded-full blur-3xl opacity-50 animate-blob animation-delay-2000"></div>
-          <div className="absolute bottom-1/4 left-1/4 w-72 h-72 bg-gradient-to-br from-orange-200 to-orange-300 rounded-full blur-3xl opacity-50 animate-blob animation-delay-4000"></div>
-          <div className="absolute -bottom-20 right-1/3 w-64 h-64 bg-gradient-to-br from-orange-300 to-orange-400 rounded-full blur-3xl opacity-40 animate-blob animation-delay-3000"></div>
-          {/* Orange rings */}
-          <div className="absolute top-20 left-1/3 w-40 h-40 border-[20px] border-orange-400 rounded-full opacity-40 blur-sm"></div>
-          <div className="absolute bottom-40 right-1/4 w-32 h-32 border-[16px] border-orange-300 rounded-full opacity-50 blur-sm"></div>
+        <div className="fixed inset-0 overflow-hidden pointer-events-none z-0 will-change-transform">
+          {/* 減少到 3 個光暈，移除動畫，降低模糊強度 */}
+          <div className="absolute -top-20 -left-20 w-80 h-80 bg-gradient-to-br from-orange-300 to-orange-400 rounded-full blur-2xl opacity-50"></div>
+          <div className="absolute top-1/3 -right-20 w-96 h-96 bg-gradient-to-br from-orange-400 to-orange-500 rounded-full blur-2xl opacity-40"></div>
+          <div className="absolute -bottom-20 left-1/4 w-72 h-72 bg-gradient-to-br from-orange-200 to-orange-300 rounded-full blur-2xl opacity-45"></div>
         </div>
       )}
 
